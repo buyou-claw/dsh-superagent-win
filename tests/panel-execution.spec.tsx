@@ -139,6 +139,17 @@ it('keeps what a person types in the Execution settings, converting it once on s
   expect(server.settings.executor).toMatchObject({ blockedCommands: ['gh-personal', 'gh-other'], directory: '/srv/my work', maxWorkers: 2 })
 })
 
+it('accepts both POSIX and Windows absolute Ticket directory roots', async () => {
+  await mount()
+  await click(zh['tab.execution'])
+  await click(find(zh['tab.settings'], '.dt-status-head button'))
+  const input = field<HTMLInputElement>(zh.executionDirectory)
+  // Browsers anchor the attribute themselves; jsdom does not enforce it, so the same rule is checked here.
+  const matches = (value: string) => new RegExp(`^(?:${input.pattern})$`).test(value)
+  for (const value of ['/srv/my work ', 'D:/DSH Data/superagent/work', 'C:\\Users\\me']) expect(matches(value), value).toBe(true)
+  for (const value of ['relative/dir', 'D:relative']) expect(matches(value), value).toBe(false)
+})
+
 it('says why an Input was not delivered on its Ticket\'s page, in either language', async () => {
   const t1 = server.ticketDetails.t1!
   server.ticketDetails.t1 = { ...t1, stage: 'person', action: 'delivery', deliveryError: 'feishu: message recalled' }

@@ -21,8 +21,8 @@
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: dsh-superagent-worker
-        name: dsh-superagent 鎵ц鍣?
-        description: dsh-superagent 鐨勬墽琛屽櫒 Session 涓撶敤锛屼笉渚涙墜鍔ㄩ€夋嫨銆傚墠鍙板懡浠よ秴 5 绉掕浆鍏ュ悗鍙帮紝鍙惈鎵ц宸ヤ綔鎵€闇€鐨勫伐鍏枫€?
+        name: dsh-superagent 执行器
+        description: dsh-superagent 的执行器 Session 专用，不供手动选择。前台命令超 5 秒转入后台，只含执行工作所需的工具。
         order: 90
         plugins:
           - id: persona
@@ -126,8 +126,8 @@
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: dsh-superagent-router
-        name: dsh-superagent 涓?Session
-        description: dsh-superagent 鐨勪富 Session 涓撶敤锛屼笉渚涙墜鍔ㄩ€夋嫨銆傚墠鍙板懡浠ゅ拰浠诲姟绛夊緟瓒?5 绉掕浆鍏ュ悗鍙帮紝鍙惈璺敱鎵€闇€鐨勫伐鍏枫€?
+        name: dsh-superagent 主 Session
+        description: dsh-superagent 的主 Session 专用，不供手动选择。前台命令和任务等待超 5 秒转入后台，只含路由所需的工具。
         order: 91
         plugins:
           - id: agent-instructions

@@ -23,6 +23,7 @@
 | `src/executor/dsh.ts` | `prepare` 命令在 Windows 用 `powershell.exe -NoProfile -NonInteractive -Command`，POSIX 仍用 `sh -c` | Windows 的 PATH 上没有 `sh`；`prepare` 命令因此要写 PowerShell 语法 |
 | `src/app/sessions.ts` | 主 Session 的工具白名单按平台取 `['pwsh']` 或 `['bash']`；`noWait` 守卫同时覆盖 `pwsh` | `tools.restrict()` 遇到未注册的工具名会抛错；Windows 只注册 `pwsh` |
 | `src/policy.ts` | `executor.directory` 接受盘符绝对路径 | 面板保存时会返回 400 |
+| `src/client/execution.tsx` | 执行目录根的 HTML `pattern` 从 `/.*` 改为同时匹配 `/…` 与 `C:\…`/`C:/…` | 服务端已放宽，但输入框仍按 POSIX 校验，浏览器校验失败会拦下整块执行设置（并行工单数一起改不了） |
 
 ---
 
